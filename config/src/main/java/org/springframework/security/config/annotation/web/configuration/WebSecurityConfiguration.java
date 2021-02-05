@@ -100,6 +100,9 @@ public class WebSecurityConfiguration implements ImportAware, BeanClassLoaderAwa
 	 * @return the {@link Filter} that represents the security filter chain
 	 * @throws Exception
 	 */
+	/**
+	 * todo FilterChainProxy 的创建过程
+	 */
 	@Bean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
 	public Filter springSecurityFilterChain() throws Exception {
 		boolean hasConfigurers = this.webSecurityConfigurers != null && !this.webSecurityConfigurers.isEmpty();
@@ -147,6 +150,9 @@ public class WebSecurityConfiguration implements ImportAware, BeanClassLoaderAwa
 	 * {@code <SecurityConfigurer<FilterChainProxy, WebSecurityBuilder>} instances used to
 	 * create the web configuration
 	 * @throws Exception
+	 */
+	/**
+	 * todo webSecurity 的创建过程
 	 */
 	@Autowired(required = false)
 	public void setFilterChainProxySecurityConfigurer(ObjectPostProcessor<Object> objectPostProcessor,

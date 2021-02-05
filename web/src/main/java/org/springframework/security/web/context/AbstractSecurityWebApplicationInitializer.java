@@ -100,6 +100,13 @@ public abstract class AbstractSecurityWebApplicationInitializer implements WebAp
 		this.configurationClasses = configurationClasses;
 	}
 
+	/**
+	 * security 过滤链 加入 到 servletContext的过程
+	 * 1：servlet规范的 ServletContainerInitializer 接口 通过spi机制寻找实现类
+	 * 2：spring-web jar包中定义了这个实现类 为 org.springframework.web.SpringServletContainerInitializer
+	 * 3：SpringServletContainerInitializer 的 onStartUp方法 查找各种 WebApplicationInitializer 加入
+	 * 4：spring security 的 AbstractSecurityWebApplicationInitializer 就是 WebApplicationInitializer， 会被找到
+	 */
 	@Override
 	public final void onStartup(ServletContext servletContext) {
 		beforeSpringSecurityFilterChain(servletContext);
@@ -112,6 +119,7 @@ public abstract class AbstractSecurityWebApplicationInitializer implements WebAp
 			servletContext.addListener("org.springframework.security.web.session.HttpSessionEventPublisher");
 		}
 		servletContext.setSessionTrackingModes(getSessionTrackingModes());
+		// 将过滤器链注入到servletContext
 		insertSpringSecurityFilterChain(servletContext);
 		afterSpringSecurityFilterChain(servletContext);
 	}

@@ -36,6 +36,11 @@ import org.springframework.util.Assert;
  *
  * @author Rob Winch
  */
+
+/**
+ * todo 重要方法
+ * 	通过这个方法拿到了spring容器中的所有WebSecurityConfigurer
+ */
 public final class AutowiredWebSecurityConfigurersIgnoreParents {
 
 	private final ConfigurableListableBeanFactory beanFactory;
